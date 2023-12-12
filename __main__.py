@@ -12,7 +12,12 @@ bot_token=config['Bot']['bot_token']
 updater = Updater(token=bot_token)
 dispatcher = updater.dispatcher
 
-log_path = os.path.join(os.getcwd(), 'logs', 'bot.log')
+log_dir = os.path.join(os.getcwd(), 'logs')
+log_path = os.path.join(log_dir, 'bot.log')
+
+import os
+if not os.path.exists(log_dir):
+    os.mkdir(log_dir)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO, filename=log_path, filemode='w')
 
