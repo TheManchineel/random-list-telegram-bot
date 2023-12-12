@@ -6,7 +6,7 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-bot_token=config[Bot].bot_token
+bot_token=config['Bot']['bot_token']
 
 updater = Updater(token=bot_token)
 dispatcher = updater.dispatcher
