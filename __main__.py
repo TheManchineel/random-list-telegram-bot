@@ -3,6 +3,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import random
 import configparser
+import os
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -11,7 +12,9 @@ bot_token=config['Bot']['bot_token']
 updater = Updater(token=bot_token)
 dispatcher = updater.dispatcher
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+log_path = os.path.join(os.getcwd(), 'logs', 'bot.log')
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO, filename=log_path, filemode='w')
 
 # Message texts
 start_message = """Welcome to Random List Bot! Please use /randomize followed by the items of your list, separated by commas, like so:
